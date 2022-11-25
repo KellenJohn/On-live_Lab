@@ -2,7 +2,7 @@
 [ref](https://ithelp.ithome.com.tw/articles/10249640)
 [ref](https://medium.com/starbugs/%E7%94%A8-harbor-%E6%9E%B6%E8%A8%AD%E7%A7%81%E6%9C%89-docker-%E5%80%89%E5%BA%AB-9e7eb2bbf769)
 
-`sh
+```sh
 $ wget https://github.com/goharbor/harbor/releases/download/v2.0.2/harbor-offline-installer-v2.0.2.tgz
 $ tar -xvf harbor-offline-installer-v2.0.2.tgz
 $ cd harbor
@@ -16,7 +16,21 @@ $ tree .
 └── prepare
 
 $ sudo ./install.sh
-`
+
+cat /etc/docker/daemon.json
+{
+    "experimental": true,
+    "debug": true,
+    "log-level": "info",
+    "insecure-registries": ["192.168.0.7"],
+    "hosts": ["unix:///var/run/docker.sock", "tcp://0.0.0.0:2375"],
+    "tls": false,
+    "tlscacert": "",
+    "tlscert": "",
+    "tlskey": ""
+}    
+    
+```
 docker login --username admin --password 1313  https://192.168.0.7
 
 
