@@ -15,9 +15,15 @@ $ tree .
 ├── LICENSE
 └── prepare
 
+
 $ sudo ./install.sh
 
-cat /etc/docker/daemon.json
+# 新增以下檔案內容 /etc/docker/daemon.json
+
+{
+    "insecure-registries": ["<Your Harbor Domain> or <IP>"]
+}
+
 {
     "experimental": true,
     "debug": true,
@@ -29,10 +35,55 @@ cat /etc/docker/daemon.json
     "tlscert": "",
     "tlskey": ""
 }    
+
+重新啟動 docker & systemctl
+$ sudo systemctl daemon-reload && sudo systemctl restart docker
+
     
 ```
 docker login --username admin --password 1313  https://192.168.0.7
 
+https://github.com/gliderlabs/docker-alpine/issues/183
+```sh
+~ # apk add openrc --no-cache
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.8/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.8/community/x86_64/APKINDEX.tar.gz
+(1/2) Installing openrc (0.35.5-r4)
+Executing openrc-0.35.5-r4.post-install
+(2/2) Installing docker-openrc (18.06.1-r0)
+Executing busybox-1.28.4-r0.trigger
+OK: 187 MiB in 26 packages
+~ # which service
+/sbin/service
+~ # service docker start
+ * WARNING: docker is already starting
+~ # service docker status
+ * You are attempting to run an openrc service on a
+ * system which openrc did not boot.
+ * You may be inside a chroot or you may have used
+ * another initialization system to boot this system.
+ * In this situation, you will get unpredictable results!
+ * If you really want to do this, issue the following command:
+ * touch /run/openrc/softlevel
+~ # touch /run/openrc/softlevel
+touch: /run/openrc/softlevel: No such file or directory
+~ # mkdir -p /run/openrc
+~ # touch /run/openrc/softlevel
+~ # service docker status
+ * status: stopped
+~ # service docker start
+ * WARNING: docker is already starting
+~ # service docker restart
+ * WARNING: docker is already starting
+~ # service docker stop
+ * ERROR: docker stopped by something else
+~ # service docker start
+ * WARNING: docker is already starting
+
+apk add --no-cache docker openrc
+service docker start
+
+```
 
 # 準備一個 harbor.yml 的設定檔案
 # 執行 prepare 這個腳本，此腳本會讀取 harbor.yml 的設定檔案，並根據此產生一個合適的 docker-compose 檔案
