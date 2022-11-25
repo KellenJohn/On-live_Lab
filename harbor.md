@@ -44,6 +44,8 @@ $ sudo systemctl daemon-reload && sudo systemctl restart docker
 docker login --username admin --password 1313  https://192.168.0.7
 
 https://github.com/gliderlabs/docker-alpine/issues/183
+https://blog.51cto.com/u_15266039/4967617
+
 ```sh
 ~ # apk add openrc --no-cache
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.8/main/x86_64/APKINDEX.tar.gz
@@ -82,6 +84,9 @@ touch: /run/openrc/softlevel: No such file or directory
 
 apk add --no-cache docker openrc
 service docker start
+
+# 设置服务开机自启动
+# rc-update add docker boot
 
 ```
 
