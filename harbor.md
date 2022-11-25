@@ -4,6 +4,28 @@
 [ref](https://ithelp.ithome.com.tw/articles/10249640)
 [ref](https://medium.com/starbugs/%E7%94%A8-harbor-%E6%9E%B6%E8%A8%AD%E7%A7%81%E6%9C%89-docker-%E5%80%89%E5%BA%AB-9e7eb2bbf769)
 
+
+
+```sh
+# apk add --no-cache docker openrc
+# 1.安裝 docker docker-compose
+apk update
+apk add docker docker-compose
+# 2.設定開機啟動與啟動 docker 服務
+rc-service docker start
+rc-update add docker
+# 
+service docker start
+rc-service docker restart
+# 设置服务开机自启动
+rc-update add docker boot
+reboot
+```
+~ 
+
+
+Harbor script
+
 ```sh
 $ wget https://github.com/goharbor/harbor/releases/download/v2.0.2/harbor-offline-installer-v2.0.2.tgz
 $ tar -xvf harbor-offline-installer-v2.0.2.tgz
@@ -39,10 +61,12 @@ $ sudo ./install.sh
 }    
 
 重新啟動 docker & systemctl
-$ sudo systemctl daemon-reload && sudo systemctl restart docker
-
-    
+$ sudo systemctl daemon-reload && sudo systemctl restart docker 
 ```
+# 準備一個 harbor.yml 的設定檔案
+# 執行 prepare 這個腳本，此腳本會讀取 harbor.yml 的設定檔案，並根據此產生一個合適的 docker-compose 檔案
+# 最後根據運行產生出來的 docker-compose 檔案即可
+
 docker login --username admin --password 1313  https://192.168.0.7
 
 https://github.com/gliderlabs/docker-alpine/issues/183
@@ -83,17 +107,6 @@ touch: /run/openrc/softlevel: No such file or directory
  * ERROR: docker stopped by something else
 ~ # service docker start
  * WARNING: docker is already starting
-
-~ # apk add --no-cache docker openrc
-
-service docker start
-rc-service sshd restart
-
-# 设置服务开机自启动
-# rc-update add docker boot
-
 ```
 
-# 準備一個 harbor.yml 的設定檔案
-# 執行 prepare 這個腳本，此腳本會讀取 harbor.yml 的設定檔案，並根據此產生一個合適的 docker-compose 檔案
-# 最後根據運行產生出來的 docker-compose 檔案即可
+
