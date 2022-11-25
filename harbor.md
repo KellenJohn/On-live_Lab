@@ -1,3 +1,5 @@
+[Linux Alpine](https://www.cnblogs.com/jackadam/p/9290366.html)
+[Linux Alpine](https://juejin.cn/post/7024096619318476814)
 
 [ref](https://ithelp.ithome.com.tw/articles/10249640)
 [ref](https://medium.com/starbugs/%E7%94%A8-harbor-%E6%9E%B6%E8%A8%AD%E7%A7%81%E6%9C%89-docker-%E5%80%89%E5%BA%AB-9e7eb2bbf769)
@@ -82,8 +84,10 @@ touch: /run/openrc/softlevel: No such file or directory
 ~ # service docker start
  * WARNING: docker is already starting
 
-apk add --no-cache docker openrc
+~ # apk add --no-cache docker openrc
+
 service docker start
+rc-service sshd restart
 
 # 设置服务开机自启动
 # rc-update add docker boot
