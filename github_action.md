@@ -13,10 +13,50 @@
 
 這邊直接以 medium-stat-box 這個專案的 config 檔來當作例子：
 
+範本
+```yaml
+# workflow 名稱
+name: CI
 
+# 什麼情況下觸發 workflow
+on:
+  # 對於 main branch 建立 Branch 與 Pull Request 時觸發 workflow 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # 允許你從 Action 頁簽上手動執行 workflow
+  workflow_dispatch:
+
+# Job 可以循序或平行執行
+jobs:
+  # 這個 workflow 只有一個 job，名稱為 "build"
+  build:
+    # 這個 job 會執行在作業系統為 ubuntu 的 runner
+    runs-on: ubuntu-latest
+
+    # 作為 Job 的一部分，Steps 會循序執行一連串的動作
+    steps:
+      # 在 $GITHUB_WORKSPACE 下簽出您的存儲庫，以便您的工作可以訪問它
+      - uses: actions/checkout@v2
+
+      # 在 Runner 上使用 shell 顯示出 Hello world
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # 執行一組的指令
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+```
+
+
+範本
 ```yaml
 # .github/workflows/continuous-integration-workflow.yml
-
+# workflow 名稱
 name: Greet Everyone
 # This workflow is triggered on pushes to the repository.
 on: [push]
@@ -37,8 +77,9 @@ jobs:
       # This step prints an output (time) from the previous step's action.
       - name: Echo the greeting's time
         run: echo 'The time was ${{ steps.hello.outputs.time }}.'
-
 ```
+
+
 
 ### Referenece
 * [實作開源小工具](https://medium.com/starbugs/%E5%AF%A6%E4%BD%9C%E9%96%8B%E6%BA%90%E5%B0%8F%E5%B7%A5%E5%85%B7-%E8%88%87-github-actions-%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87-3dd2d70eeb)
