@@ -154,8 +154,10 @@ $ tree .
 
 
 $ sudo ./install.sh
+輸入「ifconfig -a」指令來檢視所有網路介面卡資訊
 
 # 新增以下檔案內容 /etc/docker/daemon.json
+
 
 {
     "insecure-registries": ["<Your Harbor Domain> or <IP>"]
@@ -174,12 +176,16 @@ $ sudo ./install.sh
 }    
 
 重新啟動 docker & systemctl
-$ sudo systemctl daemon-reload && sudo systemctl restart docker 
+$ sudo systemctl daemon-reload && sudo systemctl restart docker
+
+
+
 ```
 * 準備一個 harbor.yml 的設定檔案
 * 執行 prepare 這個腳本，此腳本會讀取 harbor.yml 的設定檔案，並根據此產生一個合適的 docker-compose 檔案
 * 最後根據運行產生出來的 docker-compose 檔案即可
 
+docker login <Your Harbor Domain> or <IP>
 docker login --username admin --password 1313  https://192.168.0.7
 
 https://github.com/gliderlabs/docker-alpine/issues/183
