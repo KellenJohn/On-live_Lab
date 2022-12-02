@@ -1,7 +1,12 @@
 * [舙](http://rhel.idlls6wdbint.instruqt.io:8080/)
 
 
-export HARBORIP="$HARBORIP"
+
+[root@docker-cry001 centos64]# export HELLO="Hello"
+[root@docker-cry001 centos64]# echo $HELLO
+Hello
+export HARBORIP="10.5.1.17"
+curl -u admin:Harbor12345 https://$HELLO/api/v2.0/projects/library/repositories/busybox
 curl -u admin:Harbor12345 https://10.5.1.17.io/api/v2.0/projects/library/repositories/busybox
 
 https://lab.redhat.com/tracks/sandbox
