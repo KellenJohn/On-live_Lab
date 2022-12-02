@@ -1,5 +1,11 @@
 * [舙](http://rhel.idlls6wdbint.instruqt.io:8080/)
 
+
+export HARBORIP="$HARBORIP"
+curl -u admin:Harbor12345 https://10.5.1.17.io/api/v2.0/projects/library/repositories/busybox
+
+https://lab.redhat.com/tracks/sandbox
+
 [Linux Alpine](https://www.cnblogs.com/jackadam/p/9290366.html)
 [Linux Alpine](https://juejin.cn/post/7024096619318476814)
 
@@ -155,17 +161,21 @@ $ tree .
 ├── LICENSE
 └── prepare
 
-cp harbor.yml.tmpl harbor.yml
-$ sudo ./install.sh
+cp harbor.yml.tmpl harbor.ymlcd 
 輸入「ifconfig -a」指令來檢視所有網路介面卡資訊
++ ip / http 留
 
 # 新增以下檔案內容 /etc/docker/daemon.json
-
-
-ifconfigvi
 {
-    "insecure-registries": ["10.5.2.73"]
+    "insecure-registries": ["10.5.1.17"]
 }
+$ sudo systemctl daemon-reload && sudo systemctl restart docker
+
+
+
+$ sudo ./install.sh
+ifconfigvi
+
 
 {
     "experimental": true,
