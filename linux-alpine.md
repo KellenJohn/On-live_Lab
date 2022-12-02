@@ -1,3 +1,5 @@
+* [舙](http://rhel.votvk55ul2ao.instruqt.io:9090/)
+
 [Linux Alpine](https://www.cnblogs.com/jackadam/p/9290366.html)
 [Linux Alpine](https://juejin.cn/post/7024096619318476814)
 
@@ -158,7 +160,7 @@ $ sudo ./install.sh
 輸入「ifconfig -a」指令來檢視所有網路介面卡資訊
 
 # 新增以下檔案內容 /etc/docker/daemon.json
-https://rhel.votvk55ul2ao.instruqt.io/
+
 
 ifconfigvi
 {
