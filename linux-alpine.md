@@ -1,4 +1,4 @@
-* [舙](http://rhel.9mdqf2fo6vsi.instruqt.io:8080/)
+* [舙](http://rhel.idlls6wdbint.instruqt.io:8080/)
 
 [Linux Alpine](https://www.cnblogs.com/jackadam/p/9290366.html)
 [Linux Alpine](https://juejin.cn/post/7024096619318476814)
@@ -112,8 +112,8 @@ sudo yum-config-manager \
              --add-repo \
              https://download.docker.com/linux/rhel/docker-ce.repo       
              
-sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-yum list docker-ce --showduplicates | sort -r
+# sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+# yum list docker-ce --showduplicates | sort -r
 
 # >>>>>>>>>>>>>>>>>>>
 
