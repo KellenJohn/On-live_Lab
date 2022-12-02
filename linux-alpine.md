@@ -153,15 +153,16 @@ $ tree .
 ├── LICENSE
 └── prepare
 
-
+cp harbor.yml.tmpl harbor.yml
 $ sudo ./install.sh
 輸入「ifconfig -a」指令來檢視所有網路介面卡資訊
 
 # 新增以下檔案內容 /etc/docker/daemon.json
+https://rhel.votvk55ul2ao.instruqt.io/
 
-
+ifconfigvi
 {
-    "insecure-registries": ["<Your Harbor Domain> or <IP>"]
+    "insecure-registries": ["10.5.2.73"]
 }
 
 {
