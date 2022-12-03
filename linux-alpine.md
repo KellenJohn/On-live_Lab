@@ -206,6 +206,7 @@ https://gitee.com/jcown/harbor-scanner-trivy
 https://github.com/goharbor/harbor/issues/16748
 https://github.com/goharbor/harbor/issues/16748
 https://blog.csdn.net/qq_31977125/article/details/105639085
+https://gist.github.com/danielpacak/22ed6bfb5fb9ced38bb94d5acb800da6
 
 docker logs -f trivy-adapter
 ERROR: requeuer.process - dial tcp: lookup trivy-redis on 127.0.0.11:53: no such host
