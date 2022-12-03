@@ -203,7 +203,9 @@ http://rhel.d8zrr00ouhm4.instruqt.io:80
 
 https://github.com/aquasecurity/harbor-scanner-trivy/issues/73
 https://gitee.com/jcown/harbor-scanner-trivy
-https://github.com/goharbor/harbor/issues/16748
+
+https://blog.csdn.net/tianmingqing0806/article/details/126423734?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-126423734-blog-127602288.pc_relevant_landingrelevant&spm=1001.2101.3001.4242.1&utm_relevant_index=3
+
 https://github.com/goharbor/harbor/issues/16748
 https://blog.csdn.net/qq_31977125/article/details/105639085
 https://gist.github.com/danielpacak/22ed6bfb5fb9ced38bb94d5acb800da6
