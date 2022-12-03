@@ -172,15 +172,12 @@ cp harbor.yml.tmpl harbor.ymlcd
 
 # 新增以下檔案內容 /etc/docker/daemon.json
 {
-    "insecure-registries": ["10.5.1.17"]
+    "insecure-registries": ["10.5.0.193"]
 }
 $ sudo systemctl daemon-reload && sudo systemctl restart docker
 
-
-
-$ sudo ./install.sh
 ifconfigvi
-
+10.5.0.193
 
 {
     "experimental": true,
@@ -197,6 +194,27 @@ ifconfigvi
 重新啟動 docker & systemctl
 $ sudo systemctl daemon-reload && sudo systemctl restart docker
 
+$ sudo ./install.sh
+
+http://rhel.d8zrr00ouhm4.instruqt.io:80
+
+
+##### issue
+
+https://github.com/aquasecurity/harbor-scanner-trivy/issues/73
+https://gitee.com/jcown/harbor-scanner-trivy
+https://github.com/goharbor/harbor/issues/16748
+https://github.com/goharbor/harbor/issues/16748
+
+
+docker logs -f trivy-adapter
+ERROR: requeuer.process - dial tcp: lookup trivy-redis on 127.0.0.11:53: no such host
+ERROR: worker.fetch - dial tcp: lookup trivy-redis on 127.0.0.11:53: no such host
+
+
+curl http://trivy-adapter:8080/api/v1/metadata
+http://trivy-adapter:8080
+Dec  3 12:44:23 172.18.0.1 core[4512]: 2022-12-03T12:44:23Z [ERROR] [/server/error/error.go:53]: {"errors":[{"code":"INTERNAL_SERVER_ERROR","message":"scanner API: ping: scanner controller: ping: v1 client: get metadata: Get http://trivy-adapter:8080/api/v1/metadata: dial tcp: lookup trivy-adapter on 127.0.0.11:53: no such host"}]} 
 
 
 ```
