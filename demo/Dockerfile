@@ -1,4 +1,4 @@
-# 使用 Pythonn 3.9 作為 Base Image
+# 使用 Pythonn 3.9 作  BaseImage
 FROM python:3.9-slim
 
 # 設定工作目錄為 /app
