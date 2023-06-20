@@ -4,7 +4,7 @@ import psycopg2
 connection = psycopg2.connect(
             host='/cloudsql/cncf',
             user='postgres',
-            password='',
+            password='pMJMn3`yOtCmV>he',
             dbname='demo'
 )
 
