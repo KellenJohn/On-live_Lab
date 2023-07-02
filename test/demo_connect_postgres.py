@@ -2,7 +2,8 @@ import psycopg2
 
 # 连接到 Cloud SQL 实例
 connection = psycopg2.connect(
-            host='/cloudsql/cncf',
+            host='35.234.36.160',
+            port='5432',
             user='postgres',
             password='pMJMn3`yOtCmV>he',
             dbname='demo'
