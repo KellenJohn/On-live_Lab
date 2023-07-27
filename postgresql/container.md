@@ -42,12 +42,32 @@ You are now connected to database "postgres" as user "postgres".
 postgres=# \c mlaas
 You are now connected to database "mlaas" as user "postgres".
 
+# 使用 CREATE TABLE 命令建新的資料表：
+
+sql
+Copy code
+CREATE TABLE table_name (
+    column1 data_type1 constraints,
+    column2 data_type2 constraints,
+    ...
+);
+# 創建一个名為 "customers" 的表，包含 "id"、"name" 和 "email" 列：
+CREATE TABLE customers (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE
+);
+
+# \dt 命令來查看資料庫中所有表的列表
 mlaas=# \dt
            List of relations
  Schema |   Name    | Type  |  Owner   
 --------+-----------+-------+----------
  public | customers | table | postgres
 (1 row)
+
+# 或者，如果您只想查看特定表的詳細信息
+\d table_name
 
 mlaas=# ALTER TABLE customers OWNER TO mlaas;
 ALTER TABLE
