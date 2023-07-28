@@ -17,7 +17,10 @@ $ docker start my-postgres
 $ docker run -d --name my-postgres -p 8080:5432 -e POSTGRES_PASSWORD=admin postgres
 ```
 - 維運指令
+
 ```sh
+# 啟動一個可以操作的 bash 終端機非常簡單，只需要在尾端加上 bash 即可
+$ docker exec -it CONTAINER bash
 # 查看版本
 $ docker exec my-postgres psql -V
 # 查看當前存在的 Database Name
