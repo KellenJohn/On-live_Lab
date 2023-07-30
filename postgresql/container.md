@@ -159,7 +159,7 @@ mlaas=# \dt
 
 太好了！「customers」資料表現在屬於「mlaas」使用者，確保正確的管理和存取控制
 
-接下來用，可以開始放入一些 sample data
+接下來，可以開始放入一些 sample data
 https://github.com/KellenJohn/ContainerLab/blob/main/postgresql/insert_to_db.py
 #### Step 8: Insert Data
 ```python
