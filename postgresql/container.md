@@ -1,10 +1,10 @@
 ### 建立一個可連線的 PostgreSQL container
 
-本篇會使用 psql 工具以 "postgres" 使用者身份連接到 PostgreSQL 伺服器。您可以在 CLI 中使用 SQL 命令和 PostgreSQL 操作。
-若您需要在容器內執行其他 PostgreSQL 相關操作，可以使用 docker exec 命令來執行您所需的命令
-當您建立一個可連線的 PostgreSQL container 時，以下是更詳細的步驟及一些補充資訊：
+本篇會使用 psql 工具以 "postgres" 使用者身份連接到 PostgreSQL 伺服器。您可以在 CLI 中使用 SQL 命令和 PostgreSQL 操作。<br>
+若您需要在容器內執行其他 PostgreSQL 相關操作，可以使用 docker exec 命令來執行您所需的命令<br>
+當您建立一個可連線的 PostgreSQL container 時，以下是更詳細的步驟及一些補充資訊：<br>
 
-Step 1: 下載 PostgreSQL 映像檔
+#### Step 1: 下載 PostgreSQL 映像檔
 首先，使用 docker pull 命令下載 PostgreSQL 映像檔。如果您已經下載過該映像檔，則可以跳過這個步驟。
 ```sh
 # 先 pull image
@@ -12,9 +12,9 @@ $ docker pull postgres
 ```
 
 
-Step 2: 建立 PostgreSQL Container
-接下來，使用 docker create 或 docker run 命令建立一個 PostgreSQL Container。兩者的效果是相同的，您可以選擇其中一個方式來執行。
-使用 docker create 命令：
+#### Step 2: 建立 PostgreSQL Container
+接下來，使用 docker create 或 docker run 命令建立一個 PostgreSQL Container。兩者的效果是相同的，您可以選擇其中一個方式來執行。<br>
+使用 docker create 命令：<br>
 ```sh
 # 建立 container，設定 port 號，設定 postgres 最高權限的登入密碼
 $ docker create --name my-postgres -p 8080:5432 -e POSTGRES_PASSWORD=admin postgres
@@ -25,8 +25,8 @@ $ docker create --name my-postgres -p 8080:5432 -e POSTGRES_PASSWORD=admin postg
 $ docker start my-postgres
 ```
 
-或者使用 docker run 命令：
-如果不想要分這麼步驟執行，也可以直接使用 docker run：
+或者使用 docker run 命令：<br>
+如果不想要分這麼步驟執行，也可以直接使用 docker run：<br>
 ```sh
 $ docker run -d --name my-postgres -p 8080:5432 -e POSTGRES_PASSWORD=admin postgres
 # -d: 以背景模式運行容器。
@@ -34,11 +34,11 @@ $ docker run -d --name my-postgres -p 8080:5432 -e POSTGRES_PASSWORD=admin postg
 ```
 
 
-示範如何用 docker 建立一個可以連線的 PostgreSQL container。
+示範如何用 docker 建立一個可以連線的 PostgreSQL container。<br>
 - 建立 container，使用 pull + create + start
 
 
-Step 3: 啟動 PostgreSQL Container
+#### Step 3: 啟動 PostgreSQL Container
 執行以下命令來啟動 PostgreSQL Container：
 
 ```sh
@@ -79,8 +79,7 @@ $ docker exec my-postgres psql -V
 接來來將手把手建立使用者、新增資料庫，甚至在這些資料庫中創建資料表。
 隨著 PostgreSQL 容器日益成熟，您需要多個使用者以及特定權限，來管理不同的資料庫。首先，讓我們一起看看如何建立新的使用者並給予他們登入權限，並設置安全的密碼。
 
-
-- 建立使用者 與 新增資料庫
+#### Step 5: 建立使用者 與 新增資料庫
 ```sh
 # 僅需一個簡單的指令，我們建立使用者「mlaas」並設定了安全的登入密碼。
 postgres=# create role mlaas with login password 'xxxx@1313';
@@ -99,8 +98,9 @@ postgres=# \c mlaas
 You are now connected to database "mlaas" as user "postgres".
 ```
 
-舉例來說，讓我們建立一個名為「customers」的資料表，包含「id」、「name」和「email」欄位：
-### 使用 CREATE TABLE 命令建新的資料表：
+
+#### Step 6: 使用 CREATE TABLE 命令建新的資料表：
+讓我們建立一個名為「customers」的資料表，包含「id」、「name」和「email」欄位：
 
 ```sh
 CREATE TABLE table_name (
@@ -142,7 +142,7 @@ Indexes:
     "customers_email_key" UNIQUE CONSTRAINT, btree (email)
 
 ```
-
+#### Step 7: 調整權限 
 最後，將資料表的所有權指派給相應的使用者非常重要。舉例來說，讓我們將「customers」資料表指派給「mlaas」使用者
 
 ```sh
