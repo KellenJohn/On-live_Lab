@@ -1,9 +1,13 @@
 ### 透過 Load Balancer 導流至 Instance Group(管理 App Server) 並搭配 Cloud DNS 來對外提供服務
+
 在 Google Cloud Platform（GCP）上建立個人網站，您需要先建立一個虛擬機器（Compute Engine VM）來運行您的網站應用程式。在建立 VM 時，請務必選擇 "固定外部IP地址"，這將確保您的VM擁有一個穩定的公有 IP 地址，方便用戶訪問您的網站。接著，建立一個 Instance Group 來管理一組虛擬機器實例。Instance Group 可用於實現負載均衡和自動擴展，這在面對高流量時非常有用。如果您只打算使用單一虛擬機器，也可以直接將該虛擬機器連接到 Load Balancer。接下來，可以在 GCP 上建立 Load Balancer，它將負責將流量平均分發到 Instance Group 中的虛擬機器實例，從而實現載荷均衡和高可用性。您可以選擇 HTTPS 前端，並在 Google Domain 上建立憑證，確保網站的安全性。
 
 最後，您需要建立後端服務，將虛擬機器實例加入該後端服務，以接收來自 Load Balancer 的請求。您還可以建立健康檢查來監測虛擬機器實例的狀態，並確保只有健康的實例會接收流量。
 
 為了讓您的網域名稱指向您的網站，您需要進行 DNS 設定。在 Google Cloud Platform 的 Cloud DNS 中，您可以將您在域名供應商處得到的 DNS 名稱（例如：example.com）與您的 VM 的固定 IP 地址進行關聯，這樣當有人輸入您的網域名稱時，DNS解析會將其轉發到您的 VM，用戶就能訪問您的網站。
+
+![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/17942c60-59f8-46ee-b7f5-a9d86c81c225)
+
 
 1. 買個人專用網域 (Domain Name)
  - 首先，你需要選擇一個個人網域來代表你的網站，這將是你網站的網址。你可以在網路上購買網域，例如在 Godaddy 或 Google Domain 購買一個網域；當然也有免費的可以供測試使用，但是會有到期的風險。
