@@ -1,4 +1,4 @@
-
+### 透過 Load Balancer 導流至 Instance Group(管理 App Server) 並搭配 Cloud DNS 來對外提供服務
 在 Google Cloud Platform（GCP）上建立個人網站，您需要先建立一個虛擬機器（Compute Engine VM）來運行您的網站應用程式。在建立 VM 時，請務必選擇 "固定外部IP地址"，這將確保您的VM擁有一個穩定的公有 IP 地址，方便用戶訪問您的網站。接著，建立一個 Instance Group 來管理一組虛擬機器實例。Instance Group 可用於實現負載均衡和自動擴展，這在面對高流量時非常有用。如果您只打算使用單一虛擬機器，也可以直接將該虛擬機器連接到 Load Balancer。接下來，可以在 GCP 上建立 Load Balancer，它將負責將流量平均分發到 Instance Group 中的虛擬機器實例，從而實現載荷均衡和高可用性。您可以選擇 HTTPS 前端，並在 Google Domain 上建立憑證，確保網站的安全性。
 
 最後，您需要建立後端服務，將虛擬機器實例加入該後端服務，以接收來自 Load Balancer 的請求。您還可以建立健康檢查來監測虛擬機器實例的狀態，並確保只有健康的實例會接收流量。
@@ -26,7 +26,6 @@
  - 完成後，你的 Cloud DNS 設定應該會顯示 NS (Name Server) 和SOA (Start of Authority) 類型的記錄；接著在設定 A record 及 CName(選項)
  - A 記錄：它用於將域名（例如example.com）映射到對應的IPv4（Internet Protocol version 4）地址，如果你想直接將你的個人網域指向 VM 的固定IP，新增一個 A 記錄，並將網域名稱 (例如：example.com) 指向 VM 的固定 IP 地址 (例如：123.45.67.89)。這就像告訴 GPS 導航系統要去台北車站，實際上就會帶你到台北車站的具體的位置(地址)
  - CNAME 記錄(Canonical Name)：將一個域名（或子域名）映射到另一個域名，如果你想將你的網域指向另一個名稱而不是直接指向 IP，新增一個 CNAME 記錄，將網域名稱 (例如：apache.example.com) 指向另一個目標網域名稱 (例如：apache.fubar.com)。這樣當有人輸入 apache.example.com 時，DNS 解析會自動將它轉發到 apache.fubar.com。
-
 
 5. 在Google Cloud Platform (GCP) 建立 Load Balancer
  - 預計是 User --> Load Balancer 前端對外 443 port --> Load Balancer 後端導向主機的 80 port
