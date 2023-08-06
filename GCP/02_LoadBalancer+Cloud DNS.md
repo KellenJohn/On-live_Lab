@@ -6,7 +6,7 @@
 
 為了讓您的網域名稱指向您的網站，您需要進行 DNS 設定。在 Google Cloud Platform 的 Cloud DNS 中，您可以將您在域名供應商處得到的 DNS 名稱（例如：example.com）與您的 VM 的固定 IP 地址進行關聯，這樣當有人輸入您的網域名稱時，DNS解析會將其轉發到您的 VM，用戶就能訪問您的網站。
 
-![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/17942c60-59f8-46ee-b7f5-a9d86c81c225)
+![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/b85d4ac0-19b5-4524-97da-b352dffa6829)
 
 
 1. 買個人專用網域 (Domain Name)
