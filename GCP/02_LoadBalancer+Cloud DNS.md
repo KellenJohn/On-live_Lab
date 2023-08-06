@@ -64,3 +64,4 @@
 
 ### Reference
 * [TECH IN THE CLOUD](https://robertleggett.blog/2019/11/25/deep-dive-dns/)
+* [Cloud DNS Best Practice](https://cloud.google.com/dns/docs/best-practices?hl=zh-cn#reference_architectures_for_hybrid_dns)
