@@ -42,7 +42,7 @@
    主機與路徑規則
 
 
-
+---
 
 ### 補充：
 #### DNS 如何將流量路由到 Web 應用程式？
@@ -61,6 +61,32 @@
 8. Web 瀏覽器將 www.example.com 的請求傳送到從 DNS 解析程式取得的 IP 地址。這就是您的內容所在之處，例如，在 Amazon EC2 執行個體上執行的 Web 伺服器或是設定為網站端點的 Amazon S3 儲存貯體。
 9. 位於 192.0.2.44 的 Web 伺服器或其他資源將 www.example.com 的網頁傳回 Web 瀏覽器，然後 Web 瀏覽器就會顯示該頁面
 ![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/2067565a-09cf-4cfa-be96-a679e212633d)
+
+
+#### Root Server、TLD Server 和 Authoritative Server
+
+> 是 Domain Name System（DNS）中不同層次的伺服器，它們在解析網域名稱時扮演不同的角色。
+
+以下是它們的差異和舉例：
+1. Root Server（根域名伺服器）：
+ - Root Server 是 DNS 層次結構的最上層，它們是整個DNS系統的起始點。
+ - Root Server 主要負責回答根域名（例如.com、.org、.net等）的查詢，並指向下一級的 TLD Server。
+ - 全球共有13組Root Server，位於不同地理位置，每組Root Server都由不同的組織管理。
+   - 舉例：當用戶輸入 "www.example.com"，瀏覽器會向 Root Server 查詢 .com 域名的 IP 地址。
+
+2. TLD Server（頂級域名伺服器）：
+ - TLD Server 是 DNS 的下一級，處於根域名伺服器之後。
+ - TLD Server 負責回答頂級域名（例如.com、.org、.net等）的查詢，並指向該頂級域名下一級的Authoritative Server。
+ - 每個頂級域名（例如.com）都有自己的TLD Server。
+   - 舉例：當用戶輸入 "www.example.com"，瀏覽器會向 .com 域名的 TLD Server 查詢 example.com 的 IP 地址。
+
+3. Authoritative Server（授權伺服器）：
+  - Authoritative Server 是 DNS 層次結構中的最低級，它處於TLD Server之後。
+  - Authoritative Server 是管理特定網域名稱解析的伺服器，負責回答特定網域名稱的查詢；就像是 Cloud DNS（GCP）和 Route 53（AWS）這樣的產品，它們都是提供域名解析服務的授權伺服器
+  - 當用戶在瀏覽器中輸入網站的域名(網站)時，最終的解析工作由 Authoritative Server 完成，它會提供該網站的IP地址或其他相關記錄，例如該網站的 IP 地址或其他 DNS 記錄，這樣瀏覽器就能根據得到的 IP 地址連接到相應的網站伺服器，從而顯示網站內容。
+    - 舉例：假設"www.example.com"的Authoritative Server是由example.com網站擁有者所管理的伺服器，當用戶輸入該網址時，瀏覽器會向該Authoritative Server查詢相關的IP地址或其他資訊。
+ 
+> 總結來說，Root Server 是 DNS 的最高層，負責回答根域名的查詢；TLD Server 處於 Root Server 之後，負責回答頂級域名的查詢；Authoritative Server 處於 TLD Server 之後，是最低層的伺服器，負責回答特定網域名稱的查詢。這些伺服器協同工作，使得用戶能夠通過網域名稱訪問互聯網上的網站和服務。
 
 ### Reference
 * [TECH IN THE CLOUD](https://robertleggett.blog/2019/11/25/deep-dive-dns/)
