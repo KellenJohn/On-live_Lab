@@ -19,14 +19,15 @@
  - 在 GCP 上建立一個 Compute Engine 虛擬機器(VM) 來運行你的網站，我們會將此 VM 作為負載平衡的後端伺服器。
  - 請確保在建立 VM 時選擇「固定外部 IP 地址」，這將確保你的 VM 擁有一個固定的 Public IP 地址。
 
-3. 建立執行個體群組
+3. 建立執行個體群組(Instance Group)
  - Load Balancer 通常會與 Instance Group 一起使用，Load Balancer 需要知道要將請求轉發到哪些虛擬機器實例，這些虛擬機實例通常會被組織成 Instance Group。
  - 這樣的架構可以有以下幾個好處：
    - 可擴展性：可以在 Instance Group 中添加或移除虛擬機器實例，Load Balancer 會自動調整並將流量平均分配給這些實例。
    - 高可用性：如果某個虛擬機器實例出現故障或不可用，Load Balancer會自動將流量重新導向到其他可用的虛擬機器實例。
    - 簡化管理：通過 Instance Group，集中管理一組虛擬機器實例，方便擴展和維護。
- - 選擇 New unmanaged instance group
-
+ - 這邊選擇 New unmanaged instance group
+ - Region 與 Zone 記得要選與前面 VM 一樣的地方，不然會選不到
+   
 4. 到 Cloud DNS 或域名商後台設定 A record 或 CNAME：
  - 選擇「網路」→ 「Cloud DNS」→ 建立「可用區」：將你在域名商處得到的DNS名稱 (例如：example.com) 貼到 DNS 名稱欄位中
  - 完成後，你的 Cloud DNS 設定應該會顯示 NS (Name Server) 和SOA (Start of Authority) 類型的記錄；接著在設定 A record 及 CName(選項)
