@@ -1,25 +1,16 @@
 
 
-
-自動擴充概念說明
-使用 Startup-Script 建立群組說明
-
-
-使用 Image 建立群組說明
-示範 使用 Startup-Script 建立群組
-確認範本能正常建立機器
-
-
-使用範本建立群組
-調度模式說明
-自動擴充指標說明
-健康狀態檢查說明
-建立健康狀態檢查
-將健康狀態檢查設定到群組
+### 流程
+1. 建立執行個體範本 Instance Group：建立虛擬機的模板。
+2. 建立執行個體群組 Instance Group：使用範本建立多個虛擬機執行個體。
+3. 建立防火牆允許健康狀態檢查 Health Check：設定健康檢查確保虛擬機運行正常。
+4. 建立負載平衡 Load Balancer：建立平衡器均勻分配流量。
+5. 確認 Load Balencer 啟動：驗證平衡器正常運作。
+6. 做壓力測試：模擬高負載情況，確保系統可靠性和性能。
 
 
+我們先準備好執行個體範本(Instance Group Template)，這是一個包含虛擬機映像、資源配置、作業系統設定等資訊的範本。這個範本將用來快速建立多個虛擬機執行個體。接下來我們會用他來建立好「一組」能自動擴展的機器，也就是執行個體群組(Instance Group)；另外會準備好負載平衡器(Load Balancer)，當使用者流量從最前端的負載平衡進來，接著把前端流量導到不同的機器，如果流量突然變大，後端機器無法負荷的時候，Instance Group 就會自動加開機器，由負載平衡自動把流量導流到新機器上，這樣原有的機器就不會因為負載過重而崩潰。
 
-我們先準備好一組自動擴展的機器，也就是執行個體群組 (Instance Group)，當使用者流量從最前端的負載平衡進來，接著把前端流量導到不同的機器，如果流量突然變大，後端機器無法負荷的時候，Instance Group 就會自動加開機器，由負載平衡自動把流量導流到新機器上，這樣原有的機器就不會因為負載過重而崩潰。
 ### Load Balancer 和 Instance Group：
 當在 Google Cloud Platform（GCP）上建立執行個體群組（Instance Group）時，您可以根據需要使用不同的方法來創建虛擬機器實例。這些方法包括從腳本範本（Script Template）和映像（Image）建立。接下來，我們將解釋這兩種方法的相關流程。
 
@@ -41,8 +32,16 @@ EOF
  - 在建立執行個體群組時，您可以指定使用特定的映像來創建虛擬機器實例。執行個體群組將基於這個映像複製多個實例。
  - 當有新的虛擬機器需要添加到群組時，執行個體群組會從映像複製一個新的虛擬機器。
 
-3.其他設定要留意
- - 等待期：主機建立好 scripts 中所需要的 Apache, software, web page 等，需要等待這些都執行完才能對外服務。
+3. 執行個體群組(Instance Group)
+  - 位置：建議設定跨區域容錯機制，以確保在某個區域發生故障時仍能持續提供服務。
+  - 自動配置：
+    - 開啟：在群組中新增和移除執行個體 --> 能自動擴充及縮減 VM 機
+    - 向外擴充：僅新增執行個體至群組 --> 一旦擴充就降不回來了！
+    - 關閉：不自動調度資源  --> 人工介入處理了
+  - 健康檢查：如果某個執行個體無法通過健康檢查，負載平衡器將不再將流量轉發給該執行個體，確保不會將流量轉發給有問題的實例。
+  - 等待期：主機建立好 scripts 中所需要的 Apache, software, web page 等，需要等待這些都執行完才能對外服務。
+
+4.其他設定要留意
  - 自動修復：當群組判斷某台主機「不健康」，群組會直接「刪除」它，然後重新建立機器，並沒有真的修復！
  - Instance Group 建立好後，群組主機名稱會以群組名稱為前綴 + 4 碼隨機字母數字，e.g., lab-e87q，大概會是這樣的概念，Instance Group Template -> Instance Group -> VM(名稱為 Instance Group + "4-digit alphanumeric code")
 
@@ -61,18 +60,17 @@ sudo apt-get install siege
 siege -c 250 http://34.117.52.25
 ```
 
-Load Balancer 的健康狀態檢查：
-機器健康，LB 才會送流量給機器，不健康，LB 不送流量給機器，與前面的執行個體健康狀態檢查不一樣(會去修復)，兩個目的不一樣！
-Monitaring
-建立儀錶板 Dashboard，Save Chart > 命名 Chart Name > 指定 Dashbaord 名稱或新增 New Dashboard
-建立網路流量指標 Metrics Explorer 
-選取指標
-VM instance > Instance > Received bytes
-VM instance > 熱門指標 > CPU Utilization
-Label = instance_group
-Comparison = equal
-value = [群組名稱]
+#### 使用 Metrics Explorer 建立網路流量指標
+Metrics Explorer是一個用來探索並選擇指標的工具，讓你能夠監控虛擬機的性能和行為。以下是使用 Metrics Explorer 建立網路流量指標的步驟：
 
+1. 進入 Metrics Explorer：在雲端平台的控制台中，尋找 Metrics Explorer 或指標探索的選項。
+2. 選擇指標：在 Metrics Explorer 中，點擊「新增指標」或「Select Metric」。
+3. 選取指標類別：從可用的指標類別中，選擇「VM instance」, 並選擇「Received bytes」及 CPU Utilization
+4. 設定 Label 和 Comparison：在指標列表下，選擇「Label」為「instance_group」的名稱或是 ID 等，接下來可以用 Filter 的方式找到你想要監控的機器。
+5. 選擇儲存位置：你可以選擇將圖表保存至現有的儀錶板或新建一個儀錶板。
+6. 添加更多指標：如果需要監控其他指標，可以重複步驟3。
+最後檢視圖表，你將在 Metrics Explorer 上看到你所選取的指標以及相應的圖表，可進一步進行調整和分析。
+透過以上的步驟，你已經成功建立了儀錶板並使用 Metrics Explorer 選取了網路流量指標。現在你可以透過儀錶板監控你的應用程式或服務的關鍵數據，以及網路流量的狀態。請隨時進行調整和新增所需的指標，以便最有效地監控和優化你的系統性能。
 
 
 
