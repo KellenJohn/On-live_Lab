@@ -11,6 +11,7 @@ VPC 範圍與區域： 在 Google Cloud 中，您在 VPC 中指定一個 IP 位�
 VPC 內通信與安全性： 在同一個VPC內的資源可以透過內部IP地址進行通信，形成一個私有網路環境。您可以透過防火牆、網路存取控制等方式來限制和保護這些資源之間的通信。
 
 ![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/9fb20e66-ad5a-481b-bd1c-a12431d44b19)
+![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/40a93b42-8648-4241-a87e-da966cfaa775)
 
 ===
 
