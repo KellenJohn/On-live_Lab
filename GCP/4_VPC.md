@@ -1,3 +1,19 @@
+https://mile.cloud/zh/resources/blog/vpc-introduction-network-setting-subnet_533
+https://mile.cloud/zh/resources/blog/vpc-network-firewall-security-setting_567
+
+VPC，全名 Virtual Private Cloud，是雲端環境中的網路虛擬化技術，用於串接和管理在雲端部署的資源，類似於在雲端上創建一個隔離的私有網路，使資源能夠相互連接或隔離，提供安全和彈性的網路環境。在同一個 VPC 內都視為同一個內網環境，裡面的資源基本上可以透過內網 IP 來相互拜訪，可以減少延遲、增加效能，若是考慮到網路安全，還是可以透過防火牆的設計，來阻擋內網資源的互聯，有助於保護資料的隱私和安全。
+
+基本上一個專案裡面可以包含多個 VPC
+全球 VPC 概念： Google Cloud 的 VPC 是全球範圍的，這意味著它可以跨多個地理區域（Regions）運行。與
+VPC 範圍與區域： 在 Google Cloud 中，您在 VPC 中指定一個 IP 位址範圍，這個範圍將分佈在不同的地理區域。每個地理區域中的資源將獲得分配在該地區對應範圍內的 IP 位址。
+多地區連接： 在 VPC 內的不同地理區域之間，資源可以進行連接，但這通常需要透過外網的方式。這種跨地區的連接可以透過VPN（虛擬私人網路）或其他網路設定實現。
+資源 IP 分配： 每個地理區域內的資源將根據 VPC 中的 IP 位址範圍獲得相應的 IP 地址。這些 IP 地址是在 VPC 設定時指定的，並且在資源建立時自動分配。
+VPC 內通信與安全性： 在同一個VPC內的資源可以透過內部IP地址進行通信，形成一個私有網路環境。您可以透過防火牆、網路存取控制等方式來限制和保護這些資源之間的通信。
+
+![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/9fb20e66-ad5a-481b-bd1c-a12431d44b19)
+
+===
+
 全球 GCP 內網，只要是同一個 VPC 的主機都能互通
 如果不同 VPC，即使在同一個 Region 也不能互相溝通，要經過 INTERNET 了
 專案一建立，會出現名為 default 的 VPC
