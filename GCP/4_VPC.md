@@ -1,3 +1,6 @@
+![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/d82ad613-5e69-4da5-b316-029c487a6834)
+
+
 #### Reference
 * https://mile.cloud/zh/resources/blog/vpc-introduction-network-setting-subnet_533
 * https://mile.cloud/zh/resources/blog/vpc-network-firewall-security-setting_567
