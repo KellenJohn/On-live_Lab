@@ -1,4 +1,6 @@
 ![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/d82ad613-5e69-4da5-b316-029c487a6834)
+![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/e0e0ca57-6996-48e0-aff8-2b4f6abd72d5)
+![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/c3ded62f-7f4e-4793-a475-c008ae22ff37)
 
 https://medium.com/google-cloud/application-capacity-optimizations-with-global-load-balancing-e0aa079d2c25
 #### Reference
