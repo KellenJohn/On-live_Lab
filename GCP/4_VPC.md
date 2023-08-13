@@ -2,6 +2,7 @@
 ![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/e0e0ca57-6996-48e0-aff8-2b4f6abd72d5)
 ![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/c3ded62f-7f4e-4793-a475-c008ae22ff37)
 ![image](https://github.com/KellenJohn/On-live_Lab/assets/29540152/383f6c72-9cdb-4597-a8d2-340596e88486)
+https://cloud.ibm.com/docs/vpc?topic=vpc-creating-auto-scale-instance-group&interface=ui
 
 https://medium.com/google-cloud/application-capacity-optimizations-with-global-load-balancing-e0aa079d2c25
 #### Reference
